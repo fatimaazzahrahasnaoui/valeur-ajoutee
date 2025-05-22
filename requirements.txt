@@ -1,0 +1,17 @@
+# Extraction PDF
+PyMuPDF==1.23.6
+pdfplumber==0.5.27
+
+# OCR structuré avec Donut
+transformers==4.35.0
+torch==2.1.0
+pillow==9.4.0
+
+# Nettoyage du texte
+regex==2023.10.3
+
+# Modules optionnels (analyse d'images)
+chexpert==0.0.1     # Radiographies
+hna clonina whd lprojet khdina mno linfenrce t9d tkhdm likom ntoma surtout ila khdmto b wsl whawl diro lprojet f de path 9sir like mochan f c/.:
+nnunet==1.7         # IRM cérébrale
+ultralytics==8.0.0  # Échographies

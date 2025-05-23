@@ -1,9 +1,17 @@
-from transformers import pipeline
+import requests
 
 class MedicalLLM:
-    def __init__(self, model_name ="deepset/bert-base-cased-squad2"):  
-        self.qa_pipeline = pipeline("question-answering", model=model_name)
+    def __init__(self):
+      self.api_url ="https://3fed-34-125-210-40.ngrok-free.app/predict"
+
 
     def answer_question(self, context, question):
-        result = self.qa_pipeline(question=question, context=context)
-        return result["answer"]
+      prompt = f"Voici les données médicales :\n{context}\n\nQuestion : {question}"
+      response = requests.post(self.api_url, json={"prompt": prompt})
+      if response.status_code == 200:
+        raw_response = response.json()["response"]
+        # Nettoyage basique : on enlève tout ce qui ressemble au prompt
+        cleaned = raw_response.replace(prompt, "").strip()
+        return cleaned
+      else:
+        return f"Erreur LLM : {response.status_code} {response.text}"
